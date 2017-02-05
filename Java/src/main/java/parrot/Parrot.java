@@ -22,28 +22,20 @@ public class Parrot {
         return new EuropeanParrot();
     }
 
+    public static Parrot africanParrot(int numberOfCoconuts) {
+        return new AfricanParrot(numberOfCoconuts);
+    }
+
     public double getSpeed() {
         switch(type) {
-            case EUROPEAN:
-                return europeanSpeed();
-            case AFRICAN:
-                return africanSpeed();
             case NORWEGIAN_BLUE:
                 return norwegianBlueSpeed();
         }
         throw new RuntimeException("Should be unreachable");
     }
 
-    private double europeanSpeed() {
-        return BASE_SPEED;
-    }
-
     private double norwegianBlueSpeed() {
         return (isNailed) ? 0 : getBaseSpeed(voltage);
-    }
-
-    private double africanSpeed() {
-        return Math.max(0, BASE_SPEED - LOAD_FACTOR * numberOfCoconuts);
     }
 
     private double getBaseSpeed(double voltage) {
