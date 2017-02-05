@@ -2,8 +2,8 @@ package parrot;
 
 public class Parrot {
 
-    public static final double BASE_SPEED = 12.0;
-    public static final double LOAD_FACTOR = 9.0;
+    protected static final double BASE_SPEED = 12.0;
+    protected static final double LOAD_FACTOR = 9.0;
 
     private ParrotTypeEnum type;
     private int numberOfCoconuts = 0;
@@ -16,6 +16,10 @@ public class Parrot {
         this.numberOfCoconuts = numberOfCoconuts;
         this.voltage = voltage;
         this.isNailed = isNailed;
+    }
+
+    public static Parrot europeanParrot() {
+        return new EuropeanParrot();
     }
 
     public double getSpeed() {
