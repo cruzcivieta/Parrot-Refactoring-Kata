@@ -1,29 +1,34 @@
-from parrot import Parrot, ParrotType
+from unittest import TestCase
+from parrot import Parrot
 
-def test_speedOfEuropeanParrot():
-    parrot = Parrot(ParrotType.EUROPEAN, 0, 0, False)
-    assert parrot.speed() == 12.0
 
-def test_speedOfAfricanParrot_With_One_Coconut():
-    parrot = Parrot(ParrotType.AFRICAN, 1, 0, False)
-    assert parrot.speed() == 3.0
+class ParrotTest(TestCase):
 
-def test_speedOfAfricanParrot_With_Two_Coconuts():
-    parrot = Parrot(ParrotType.AFRICAN, 2, 0, False)
-    assert parrot.speed() == 0.0 
+    def test_speed_of_european_parrot(self):
+        parrot = Parrot.european_parrot()
+        self.assertEqual(12.0, parrot.speed())
 
-def test_speedOfAfricanParrot_With_No_Coconuts():
-    parrot = Parrot(ParrotType.AFRICAN, 0, 0, False)
-    assert parrot.speed() == 12.0
+    def test_speed_of_african_parrot_with_one_coconut(self):
+        parrot = Parrot.african_parrot(1)
+        self.assertEqual(3.0, parrot.speed())
 
-def test_speedNorwegianBlueParrot_nailed():
-    parrot = Parrot(ParrotType.NORWEGIAN_BLUE, 0, 0, True)
-    assert parrot.speed() == 0.0
+    def test_speed_of_african_parrot_with_two_coconuts(self):
+        parrot = Parrot.african_parrot(2)
+        self.assertEqual(0.0, parrot.speed())
 
-def test_speedNorwegianBlueParrot_not_nailed():
-    parrot = Parrot(ParrotType.NORWEGIAN_BLUE, 0, 1.5, False)
-    assert parrot.speed() == 18.0
+    def test_speed_of_african_parrot_with_no_coconuts(self):
+        parrot = Parrot.african_parrot(0)
+        self.assertEqual(12.0, parrot.speed())
 
-def test_speedNorwegianBlueParrot_not_nailed_high_voltage():
-    parrot = Parrot(ParrotType.NORWEGIAN_BLUE, 0, 4, False)
-    assert parrot.speed() == 24.0
+    def test_speed_parrot_nailed(self):
+        parrot = Parrot.nailed_parrot()
+        self.assertEqual(0.0, parrot.speed())
+
+    def test_speed_norwegian_blue_parrot(self):
+        parrot = Parrot.norwegian_blue_parrot(1.5)
+        self.assertEqual(18.0, parrot.speed())
+
+    def test_speed_norwegian_blue_parrot_high_voltage(self):
+        parrot = Parrot.norwegian_blue_parrot(4.0)
+        self.assertEqual(24.0, parrot.speed())
+
